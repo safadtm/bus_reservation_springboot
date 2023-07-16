@@ -10,7 +10,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BusSchedule {
-    private Integer scheduleId;
+    private Long scheduleId;
     private Bus bus;
     private BusRoute busRoute;
     private String departureTime;

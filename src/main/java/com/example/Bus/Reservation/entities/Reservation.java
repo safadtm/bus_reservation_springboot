@@ -10,10 +10,10 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Reservation {
-    private Integer reservationId;
+    private String reservationId;
     private Customer customer;
     private BusSchedule busSchedule;
-    private Integer timestamp;
+    private Long timestamp;
     private String departureDate;
     private Integer totalSeatBooked;
     private String seatNumbers;

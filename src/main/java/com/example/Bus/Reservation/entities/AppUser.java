@@ -10,7 +10,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AppUser {
-    private Integer id;
+    private Long id;
     private String userName;
     private String password;
     private String role;
