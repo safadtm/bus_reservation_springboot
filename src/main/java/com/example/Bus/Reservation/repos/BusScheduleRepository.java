@@ -12,5 +12,5 @@ public interface BusScheduleRepository extends JpaRepository<BusSchedule,Long> {
 
     Optional<List<BusSchedule>> findByBusRoute(BusRoute busRoute);
 
-    Boolean existsByBusAndBusRouteAndDepartureTome(Bus bus,BusRoute busRoute,String date);
+    Boolean existsByBusAndBusRouteAndDepartureTime(Bus bus,BusRoute busRoute,String departureTime);
 }
