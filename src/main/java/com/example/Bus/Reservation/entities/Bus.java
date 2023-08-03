@@ -26,5 +26,7 @@ public class Bus {
     private Integer totalSeat;
 
 
+
+
 }
 

@@ -25,28 +25,25 @@ public class BusScheduleServiceImpl implements BusScheduleService {
 
     @Override
     public BusSchedule addSchedule(BusSchedule busSchedule) throws ReservationApiException {
-     final Boolean exists=busScheduleRepository.existsByBusAndBusRouteAndDepartureTime(
-             busSchedule.getBus(),
-             busSchedule.getBusRoute(),
-             busSchedule.getDepartureTime());
-        if (exists) {
-            throw new ReservationApiException(HttpStatus.CONFLICT,"Duplicate Schedule");
-        }
-        // Save the Bus entity first
-        Bus bus = new Bus(/* Initialize bus properties */);
-        busRepository.save(bus);
 
-        // Save the BusRoute entity
-        BusRoute busRoute = new BusRoute(/* Initialize bus route properties */);
-        busRouteRepository.save(busRoute);
 
-        // Now set the Bus and BusRoute references for the BusSchedule entity
+        Bus bus = busRepository.save(busSchedule.getBus());
+        BusRoute busRoute = busRouteRepository.save(busSchedule.getBusRoute());
+
         busSchedule.setBus(bus);
         busSchedule.setBusRoute(busRoute);
 
-        // Save the BusSchedule entity
-        return busScheduleRepository.save(busSchedule);
 
+        final Boolean exists=busScheduleRepository.existsByBusAndBusRouteAndDepartureTime(
+                busSchedule.getBus(),
+                busSchedule.getBusRoute(),
+                busSchedule.getDepartureTime());
+        if (exists) {
+            throw new ReservationApiException(HttpStatus.CONFLICT,"Duplicate Schedule");
+        }
+
+
+        return busScheduleRepository.save(busSchedule);
     }
 
     @Override
