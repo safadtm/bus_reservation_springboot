@@ -4,9 +4,9 @@ import com.example.Bus.Reservation.models.ReservationApiException;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
-import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
 
 import java.security.Key;
 import java.util.Date;
@@ -21,7 +21,7 @@ public class JwtTokenProvider {
     private Long expiration;
 
     public String generateToken(Authentication authentication) {
-        String userName = authentication.name();
+        String userName = authentication.getName();
         Date expireDate = new Date(new Date().getTime() + expiration);
         return Jwts.builder()
                 .setSubject(userName)
