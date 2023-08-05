@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
-    @Value("${app.jwt-expiration-milliseconds}")
+    @Value("${app.jwtExpirationInMs}")
     private Long expiration;
 
    @Autowired

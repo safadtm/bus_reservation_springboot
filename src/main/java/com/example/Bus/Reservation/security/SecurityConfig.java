@@ -1,5 +1,5 @@
 package com.example.Bus.Reservation.security;
-
+import com.example.Bus.Reservation.security.JwtAuthFilter;
 import com.example.Bus.Reservation.services.CustomUserDetailsService;
 import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +10,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -29,7 +30,8 @@ public class SecurityConfig {
 
    @Bean
    SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception{
-       http.authorizeHttpRequests((authReq)->authReq
+       http.csrf(AbstractHttpConfigurer::disable).
+               authorizeHttpRequests((authReq)->authReq
                        .requestMatchers(HttpMethod.GET)
                        .permitAll()
                        .requestMatchers("/api/auth/**")
